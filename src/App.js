@@ -8,15 +8,25 @@ import { getPlacesData } from './api'
 const App = () => {
 
     const[places, setPlaces] = useState([])
+    const[coordinates, setCoordinates] = useState({})
+    const[bounds, setBounds] = useState({})
 
     useEffect(() => {
-        getPlacesData()
+        console.log(coordinates, bounds)
+        getPlacesData(bounds.sw, bounds.ne)
             .then((data) => {
                 console.log(data)
-
                 setPlaces(data)
             })
+    }, [coordinates, bounds])
+
+    useEffect(() => {
+        navigator.geolocation.getCurrentPosition(({coords: { latitude, longitude }}) => {
+            setCoordinates({lat: latitude, lng: longitude})
+        })
     }, [])
+
+ 
     return (
         <>
             <CssBaseline />
@@ -26,7 +36,10 @@ const App = () => {
                     <List />
                 </Grid>
                 <Grid item xs = {12} md = {8}>
-                    <Map />
+                    <Map setCoordinates = {setCoordinates}
+                        setBounds = {setBounds}
+                        coordinates = {coordinates}
+                    />
                 </Grid>
             </Grid>
         </>
