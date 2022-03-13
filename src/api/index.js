@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const URL = 'https://travel-advisor.p.rapidapi.com/hotels/list-in-boundary'
+const URL = 'https://travel-advisor.p.rapidapi.com/restaurants/list-in-boundary'
 
 export const getPlacesData = async (sw, ne) => {
 
@@ -14,7 +14,7 @@ export const getPlacesData = async (sw, ne) => {
           },
           headers: {
             'x-rapidapi-host': 'travel-advisor.p.rapidapi.com',
-            'x-rapidapi-key': 'c02d976103mshf7688e4abf6eae8p1ac27cjsn6ff8ffe428b8'
+            'x-rapidapi-key': 'b2154059a0msh9813f7629070d38p1e2c87jsn9748c5771567'
           }
         })
 
