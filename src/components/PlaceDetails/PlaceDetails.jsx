@@ -19,6 +19,10 @@ const PlaceDetails = ({place}) => {
             <CardContent>
                 <Typography gutterBottom variant = 'h5'>{place.name}</Typography>
                 <Box display = 'flex' justifyContent = 'space-between'>
+                    <Rating value = {Number(place.rating)} readOnly/>
+                    <Typography gutterBottom variant = 'subtiile1'>out of {place.num_reviews} reviews</Typography>
+                </Box>
+                <Box display = 'flex' justifyContent = 'space-between'>
                     <Typography variant = 'subtiile1'>Ranking</Typography>
                     <Typography gutterBottom variant = 'subtiile1'>{place.ranking}</Typography>
                 </Box>
