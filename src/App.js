@@ -15,12 +15,13 @@ const App = () => {
     const[rating, setRating] = useState('')
 
     useEffect(() => {
+        if(bounds.sw && bounds.ne){
         getPlacesData(type, bounds.sw, bounds.ne)
             .then((data) => {
-                setPlaces(data)
+                setPlaces(data?.filter(place => place.name && place.num_reviews > 0))
                 setFilteredPlaces([])
-            })
-    }, [type, coordinates, bounds])
+            })}
+    }, [type, bounds])
  
     useEffect(() => {
         const filteredPlaces = places.filter((place) => place.rating > rating)
@@ -37,7 +38,7 @@ const App = () => {
     return (
         <>
             <CssBaseline />
-            <Header />
+            <Header setCoordinates = {setCoordinates}/>
             <Grid container spacing = {3} style = {{width: '100%'}}>
                 <Grid item xs = {12} md = {4}>
                     <List places = {filteredPlaces.length ? filteredPlaces : places}
